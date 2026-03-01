@@ -1,42 +1,19 @@
-let carrello = [];
-let totale = 0;
+let somma = 0;
 
-function aggiungiAlQuadro(nome, prezzo) {
-    // 1. Aggiungi logica carrello
-    carrello.push({nome, prezzo});
-    totale += prezzo;
-    aggiornaInterfaccia();
-
-    // 2. Crea l'elemento visivo nel quadro
-    const quadro = document.getElementById('quadro-reale');
-    const nuovoPezzo = document.createElement('div');
+function creaPezzo(tipo, prezzo) {
+    // Aggiungi al calcolo
+    somma += prezzo;
+    document.getElementById('totale').innerText = `€ ${somma.toFixed(2)}`;
     
-    nuovoPezzo.style.width = "80%";
-    nuovoPezzo.style.height = "40px";
-    nuovoPezzo.style.background = "#fbbf24";
-    nuovoPezzo.style.margin = "10px auto";
-    nuovoPezzo.style.borderRadius = "4px";
-    nuovoPezzo.style.color = "black";
-    nuovoPezzo.style.fontWeight = "bold";
-    nuovoPezzo.style.display = "flex";
-    nuovoPezzo.style.justifyContent = "center";
-    nuovoPezzo.style.alignItems = "center";
-    nuovoPezzo.style.fontSize = "12px";
-    nuovoPezzo.innerText = nome.toUpperCase();
+    // Aggiungi riga al carrello
+    const riga = document.createElement('div');
+    riga.innerHTML = `<span>${tipo.toUpperCase()}</span> - €${prezzo}`;
+    document.getElementById('elenco-ordini').appendChild(riga);
 
-    quadro.appendChild(nuovoPezzo);
-}
-
-function aggiornaInterfaccia() {
-    const lista = document.getElementById('lista-pezzi');
-    const totaleDoc = document.getElementById('prezzo-totale');
+    // Crea l'elemento grafico sulla prima guida DIN libera
+    const pezzo = document.createElement('div');
+    pezzo.className = `interruttore ${tipo}`;
     
-    lista.innerHTML = carrello.map(item => 
-        `<div style="display:flex; justify-content:space-between; margin-bottom:5px;">
-            <span>${item.nome}</span>
-            <span>€${item.prezzo.toFixed(2)}</span>
-        </div>`
-    ).join('');
-    
-    totaleDoc.innerText = `€ ${totale.toFixed(2)}`;
+    // Lo mettiamo nella prima guida disponibile
+    document.getElementById('din-1').appendChild(pezzo);
 }
