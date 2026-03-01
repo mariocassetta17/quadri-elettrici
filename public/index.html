@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Configuratore Multinazionale Quadri</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center; background: #2c3e50; color: white; }
+        .container { display: flex; gap: 20px; margin-top: 20px; }
+        #toolbar { width: 200px; background: #34495e; padding: 15px; border-radius: 8px; }
+        #quadro { width: 400px; height: 600px; background: #bdc3c7; border: 10px solid #7f8c8d; position: relative; overflow: hidden; border-radius: 5px; }
+        .componente { width: 80px; padding: 10px; background: #e67e22; border: 2px solid #d35400; cursor: grab; margin-bottom: 10px; text-align: center; font-size: 12px; font-weight: bold; color: black; }
+        .posizionato { position: absolute; cursor: move; }
+    </style>
+</head>
+<body>
+    <h1>Costruttore Mondiale GEPB</h1>
+    <p>Trascina i componenti nel quadro - Spedizione Gratuita Attiva</p>
+
+    <div class="container">
+        <div id="toolbar">
+            <h3>Componenti</h3>
+            <div class="componente" draggable="true" ondragstart="drag(event)" id="comp1">Magnetotermico</div>
+            <div class="componente" draggable="true" ondragstart="drag(event)" id="comp2">Differenziale</div>
+            <div class="componente" draggable="true" ondragstart="drag(event)" id="comp3">PLC Siemens</div>
+        </div>
+
+        <div id="quadro" ondrop="drop(event)" ondragover="allowDrop(event)">
+            </div>
+    </div>
+
+    <script>
+        function allowDrop(ev) { ev.preventDefault(); }
+        function drag(ev) { ev.dataTransfer.setData("text", ev.target.innerText); }
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            var nuovo = document.createElement("div");
+            nuovo.className = "componente posizionato";
+            nuovo.innerText = data;
+            nuovo.style.left = (ev.offsetX - 40) + "px";
+            nuovo.style.top = (ev.offsetY - 25) + "px";
+            ev.target.appendChild(nuovo);
+        }
+    </script>
+</body>
+</html>
