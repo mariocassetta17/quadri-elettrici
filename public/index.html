@@ -2,46 +2,109 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>GEPB Configurator v2.0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEPB PRO | Configurazione Avanzata</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="bg-[#0b0f19] text-gray-200 h-screen overflow-hidden flex flex-col font-sans">
 
-<div class="app-container">
-    <aside id="sidebar">
-        <h2 style="color: var(--accent)">GEPB GLOBAL</h2>
-        <p style="font-size: 10px; color: #888; margin-bottom: 30px;">MULTINATIONAL INDUSTRIAL SYSTEMS</p>
-        
-        <div class="comp-item" onclick="creaPezzo('magneto', 35)">
-            <div style="font-weight: bold;">Magnetotermico 16A</div>
-            <div style="font-size: 12px; color: #aaa;">€ 35,00</div>
+    <header class="h-16 bg-[#111827] border-b border-gray-800 flex justify-between items-center px-6 shadow-md z-10">
+        <div class="flex items-center gap-4">
+            <div class="text-2xl font-black tracking-tight text-blue-500">GEPB<span class="text-white">PRO</span></div>
+            <div class="h-6 w-px bg-gray-700"></div>
+            <div class="text-sm text-gray-400">Progetto: <span class="text-white font-mono">QG-2026-001</span></div>
         </div>
-        <div class="comp-item" onclick="creaPezzo('diff', 79)">
-            <div style="font-weight: bold;">Differenziale 2P</div>
-            <div style="font-size: 12px; color: #aaa;">€ 79,00</div>
+        <div class="flex gap-4">
+            <span class="px-3 py-1 bg-green-500/10 text-green-400 border border-green-500/20 rounded text-xs font-bold tracking-widest flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> SYSTEM ONLINE
+            </span>
+            <button class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded text-sm font-bold transition">ESPORTA CAD</button>
         </div>
-    </aside>
+    </header>
 
-    <main id="canvas">
-        <div id="quadro-esterno">
-            <div id="piastra-interna">
-                <div class="guida-din" id="din-1"></div>
-                <div class="guida-din" id="din-2"></div>
-                <div class="guida-din" id="din-3"></div>
+    <div class="flex flex-1 overflow-hidden">
+        <aside class="w-80 bg-[#111827] border-r border-gray-800 flex flex-col shadow-xl z-10">
+            <div class="p-4 border-b border-gray-800 bg-[#1f2937]">
+                <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest">Libreria Componenti</h2>
             </div>
-        </div>
-    </main>
+            <div class="p-4 space-y-3 overflow-y-auto flex-1 custom-scrollbar">
+                
+                <div class="comp-card" onclick="aggiungiComponente('Magnetotermico C16', 45, 1, 2.5)">
+                    <div class="font-bold text-gray-100">Magnetotermico 16A</div>
+                    <div class="text-xs text-gray-500 mt-1">Ingombro: 1 Modulo DIN | Dissipazione: 2.5W</div>
+                    <div class="text-blue-400 font-mono mt-2">€ 45.00</div>
+                </div>
 
-    <aside id="checkout">
-        <h3>Riepilogo</h3>
-        <div id="elenco-ordini" style="height: 400px; font-size: 14px;"></div>
-        <hr>
-        <div style="font-size: 24px; margin-top: 10px;">Totale: <span id="totale">€ 0.00</span></div>
-        <button class="btn-buy">PRODUCI ORA</button>
-        <p style="font-size: 10px; text-align: center; margin-top: 10px; color: #2ecc71;">✓ SPEDIZIONE GRATUITA INCLUSA</p>
-    </aside>
-</div>
+                <div class="comp-card" onclick="aggiungiComponente('Differenziale Puro', 89, 2, 4.0)">
+                    <div class="font-bold text-gray-100">Differenziale Puro 40A</div>
+                    <div class="text-xs text-gray-500 mt-1">Ingombro: 2 Moduli DIN | Dissipazione: 4.0W</div>
+                    <div class="text-blue-400 font-mono mt-2">€ 89.00</div>
+                </div>
 
-<script src="script.js"></script>
+                <div class="comp-card" onclick="aggiungiComponente('Alimentatore 24V', 120, 4, 15.0)">
+                    <div class="font-bold text-gray-100">Alimentatore 24VDC 5A</div>
+                    <div class="text-xs text-gray-500 mt-1">Ingombro: 4 Moduli DIN | Dissipazione: 15.0W</div>
+                    <div class="text-blue-400 font-mono mt-2">€ 120.00</div>
+                </div>
+
+            </div>
+        </aside>
+
+        <main class="flex-1 relative blueprint-bg flex justify-center items-center overflow-auto p-10">
+            <div id="quadro-pro" class="relative bg-[#cbd5e1] border-[16px] border-[#64748b] rounded-xl shadow-2xl flex flex-col items-center py-12 gap-16 transition-all duration-300">
+                <div class="absolute top-2 left-4 text-[#64748b] font-mono text-xs font-bold">ARMADIO METALLICO IP65</div>
+                
+                <div class="guida-din" id="guida-1"><div class="absolute -left-6 text-xs font-mono text-gray-500">G1</div></div>
+                <div class="guida-din" id="guida-2"><div class="absolute -left-6 text-xs font-mono text-gray-500">G2</div></div>
+                <div class="guida-din" id="guida-3"><div class="absolute -left-6 text-xs font-mono text-gray-500">G3</div></div>
+            </div>
+        </main>
+
+        <aside class="w-80 bg-[#111827] border-l border-gray-800 flex flex-col shadow-xl z-10">
+            <div class="p-4 border-b border-gray-800 bg-[#1f2937]">
+                <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest">Analisi Impianto</h2>
+            </div>
+            
+            <div class="p-6 space-y-6 flex-1">
+                <div>
+                    <div class="flex justify-between text-xs text-gray-400 mb-1">
+                        <span>Spazio Guida DIN</span>
+                        <span id="spazio-testo" class="text-white">0 / 36 Moduli</span>
+                    </div>
+                    <div class="w-full bg-gray-800 rounded-full h-2">
+                        <div id="barra-spazio" class="bg-blue-500 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex justify-between text-xs text-gray-400 mb-1">
+                        <span>Carico Termico (Dissipazione)</span>
+                        <span id="termica-testo" class="text-white">0.0 W</span>
+                    </div>
+                    <div class="w-full bg-gray-800 rounded-full h-2">
+                        <div id="barra-termica" class="bg-orange-500 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <hr class="border-gray-800">
+
+                <div class="h-40 overflow-y-auto custom-scrollbar text-sm" id="distinta-base">
+                    </div>
+            </div>
+
+            <div class="p-6 border-t border-gray-800 bg-[#0b0f19]">
+                <div class="flex justify-between items-end mb-4">
+                    <span class="text-gray-400 text-sm">Totale Impianto:</span>
+                    <span id="totale-prezzo" class="text-3xl font-black text-white">€ 0.00</span>
+                </div>
+                <button class="w-full bg-yellow-500 hover:bg-yellow-400 text-black font-black py-3 rounded uppercase tracking-widest transition shadow-[0_0_15px_rgba(234,179,8,0.3)] hover:shadow-[0_0_25px_rgba(234,179,8,0.5)]">
+                    Manda in Produzione
+                </button>
+            </div>
+        </aside>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
