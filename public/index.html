@@ -2,43 +2,46 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>GEPB | Global Electric Panel Builder</title>
+    <title>GEPB Configurator v2.0</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="header">
-        <div style="font-weight: 900; font-size: 24px; color: #fbbf24;">GEPB GLOBAL</div>
-        <div style="color: #22c55e;">FREE WORLDWIDE SHIPPING ACTIVE</div>
-    </header>
+<div class="app-container">
+    <aside id="sidebar">
+        <h2 style="color: var(--accent)">GEPB GLOBAL</h2>
+        <p style="font-size: 10px; color: #888; margin-bottom: 30px;">MULTINATIONAL INDUSTRIAL SYSTEMS</p>
+        
+        <div class="comp-item" onclick="creaPezzo('magneto', 35)">
+            <div style="font-weight: bold;">Magnetotermico 16A</div>
+            <div style="font-size: 12px; color: #aaa;">€ 35,00</div>
+        </div>
+        <div class="comp-item" onclick="creaPezzo('diff', 79)">
+            <div style="font-weight: bold;">Differenziale 2P</div>
+            <div style="font-size: 12px; color: #aaa;">€ 79,00</div>
+        </div>
+    </aside>
 
-    <div class="main-container">
-        <aside id="sidebar">
-            <h3>Componenti</h3>
-            <div class="comp-card" onclick="aggiungiAlQuadro('Magnetotermico 16A', 45.00)">
-                <b>Magnetotermico</b><br><small>€ 45,00</small>
+    <main id="canvas">
+        <div id="quadro-esterno">
+            <div id="piastra-interna">
+                <div class="guida-din" id="din-1"></div>
+                <div class="guida-din" id="din-2"></div>
+                <div class="guida-din" id="din-3"></div>
             </div>
-            <div class="comp-card" onclick="aggiungiAlQuadro('Differenziale', 95.50)">
-                <b>Differenziale</b><br><small>€ 95,50</small>
-            </div>
-            <div class="comp-card" onclick="aggiungiAlQuadro('PLC Siemens', 520.00)">
-                <b>PLC S7-1200</b><br><small>€ 520,00</small>
-            </div>
-        </aside>
+        </div>
+    </main>
 
-        <main id="workspace">
-            <div id="quadro-reale"></div>
-        </main>
+    <aside id="checkout">
+        <h3>Riepilogo</h3>
+        <div id="elenco-ordini" style="height: 400px; font-size: 14px;"></div>
+        <hr>
+        <div style="font-size: 24px; margin-top: 10px;">Totale: <span id="totale">€ 0.00</span></div>
+        <button class="btn-buy">PRODUCI ORA</button>
+        <p style="font-size: 10px; text-align: center; margin-top: 10px; color: #2ecc71;">✓ SPEDIZIONE GRATUITA INCLUSA</p>
+    </aside>
+</div>
 
-        <aside id="carrello">
-            <h3>Il Tuo Ordine</h3>
-            <div id="lista-pezzi"></div>
-            <hr style="border: 0.5px solid #334155; margin: 20px 0;">
-            <div style="font-size: 20px;">Totale: <span id="prezzo-totale" style="color:#22c55e;">€ 0,00</span></div>
-            <button class="btn-order" onclick="alert('Ordine inviato alla produzione multinazionale!')">ORDINA ORA</button>
-        </aside>
-    </div>
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
