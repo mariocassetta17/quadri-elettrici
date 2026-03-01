@@ -1,0 +1,14 @@
+{
+  "name": "quadri-elettrici-multinazionale",
+  "version": "1.0.0",
+  "description": "Piattaforma e-commerce per la progettazione e produzione automatizzata di quadri elettrici.",
+  "main": "server.js",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.18.0",
+    "mongoose": "^6.0.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}
