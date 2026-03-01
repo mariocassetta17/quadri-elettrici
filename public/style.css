@@ -1,0 +1,91 @@
+:root {
+    --primary: #fbbf24;
+    --bg-dark: #0f172a;
+    --panel-bg: #1e293b;
+    --accent: #22c55e;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.header {
+    background: var(--bg-dark);
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #334155;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+#sidebar {
+    width: 300px;
+    background: var(--panel-bg);
+    padding: 20px;
+    border-right: 1px solid #334155;
+}
+
+#workspace {
+    flex: 1;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#quadro-reale {
+    width: 450px;
+    height: 600px;
+    background: #334155;
+    border: 15px solid #475569;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+}
+
+.comp-card {
+    background: #334155;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    border-left: 5px solid var(--primary);
+    transition: 0.3s;
+}
+
+.comp-card:hover {
+    background: #475569;
+    transform: translateX(10px);
+}
+
+#carrello {
+    width: 300px;
+    background: var(--panel-bg);
+    padding: 20px;
+    border-left: 1px solid #334155;
+}
+
+.btn-order {
+    width: 100%;
+    padding: 15px;
+    background: var(--primary);
+    color: black;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+}
